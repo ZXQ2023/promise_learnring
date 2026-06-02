@@ -72,10 +72,14 @@ class MyPromise{
   #value
   constructor(executor) {
     const resolve = (value) => {
-      this.#setState(FULFILLED, value);
+      if (this.state !== 'pending') return;
+      this.value = value;
+      this.state = 'fulfilled';
     }
     const reject = (reason) => {
-      this.#setState(REJECTED, reason);
+      if (this.state !== 'pending') return;
+      this.value = reason;
+      this.state = 'rejected';
     }
     try{
       executor(resolve, reject);
@@ -83,12 +87,6 @@ class MyPromise{
     catch(err){
       reject(err);
     }
-  }
-
-  #setState(state, value){
-    if(this.#state !== PENDING) return;
-    this.#state = state;
-    this.#value = value;
   }
 }`,
 
