@@ -1,0 +1,28 @@
+:root {
+  --vp-c-brand-1: #6366f1;
+  --vp-c-brand-2: #818cf8;
+  --vp-c-brand-3: #4f46e5;
+  --vp-c-brand-soft: rgba(99, 102, 241, 0.14);
+}
+
+.dark {
+  --vp-c-bg: #0f0f1a;
+  --vp-c-bg-soft: #1a1a2e;
+  --vp-c-bg-mute: #1e1e2e;
+  --vp-c-bg-alt: #16162a;
+
+  --vp-c-sidebar-bg: #1e1e2e;
+
+  --vp-c-text-1: rgba(229, 231, 235, 1);
+  --vp-c-text-2: rgba(156, 163, 175, 1);
+  --vp-c-text-3: rgba(107, 114, 128, 1);
+
+  --vp-c-divider: rgba(55, 65, 81, 0.5);
+  --vp-c-gutter: rgba(55, 65, 81, 0.5);
+}
+
+/* VitePress code blocks already use a nice dark theme, but our custom
+   CodeBlock component has its own background — make sure they don't clash. */
+.vp-doc .code-block-wrapper pre {
+  background: transparent !important;
+}
