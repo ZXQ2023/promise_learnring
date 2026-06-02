@@ -7,13 +7,41 @@ import { stepCodes } from '../shared/step-codes'
 
 const code = stepCodes['resolve-promise']
 
-const runCode = code + `
-
+const examples = [
+  {
+    title: '示例一：then 回调返回 Promise',
+    code: `
 const p = new MyPromise((resolve) => resolve('Hello'));
 const p2 = p.then((v) => {
   return new MyPromise((resolve) => resolve(v + ' from p2'));
 });
 p2.then((v) => console.log('result:', v));`
+  },
+  {
+    title: '示例二：then 回调返回普通值',
+    code: `
+const p = new MyPromise((resolve) => resolve(10));
+p.then((v) => {
+  return v * 2;
+}).then((v) => {
+  console.log('doubled:', v);
+});`
+  },
+  {
+    title: '示例三：嵌套 Promise 链式调用',
+    code: `
+new MyPromise((resolve) => resolve(1))
+  .then((v) => {
+    console.log('step 1:', v);
+    return new MyPromise((resolve) => resolve(v + 1));
+  })
+  .then((v) => {
+    console.log('step 2:', v);
+    return new MyPromise((resolve) => resolve(v + 1));
+  })
+  .then((v) => console.log('step 3:', v));`
+  }
+]
 </script>
 
 # then 嵌套 Promise
@@ -35,4 +63,12 @@ p2.then((v) => console.log('result:', v));`
 
 <CodeBlock :code="code" :previous-code="stepCodes['microtask']" title="my-promise.js" />
 
-<ResultBlock :code="runCode" />
+## 运行示例
+
+<ResultBlock
+  v-for="(ex, i) in examples"
+  :key="i"
+  :code="code + ex.code"
+  :example-code="ex.code.trim()"
+  :title="ex.title"
+/>

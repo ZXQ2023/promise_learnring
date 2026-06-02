@@ -7,8 +7,10 @@ import { stepCodes } from '../shared/step-codes'
 
 const code = stepCodes['async-resolve']
 
-const runCode = code + `
-
+const examples = [
+  {
+    title: '示例一：异步 resolve',
+    code: `
 const p = new MyPromise((resolve, reject) => {
   setTimeout(() => {
     resolve('Async Success!');
@@ -17,6 +19,30 @@ const p = new MyPromise((resolve, reject) => {
 p.then((value) => {
   console.log('Fulfilled:', value);
 });`
+  },
+  {
+    title: '示例二：异步 reject',
+    code: `
+const p = new MyPromise((resolve, reject) => {
+  setTimeout(() => {
+    reject('Async Error!');
+  }, 100);
+});
+p.then(
+  (value) => console.log('Fulfilled:', value),
+  (reason) => console.log('Rejected:', reason)
+);`
+  },
+  {
+    title: '示例三：先注册 then，后 resolve',
+    code: `
+const p = new MyPromise((resolve) => {
+  setTimeout(() => resolve('Late!'), 50);
+});
+p.then((v) => console.log('then 1:', v));
+p.then((v) => console.log('then 2:', v));`
+  }
+]
 </script>
 
 # 异步 resolve/reject
@@ -41,4 +67,12 @@ p.then((value) => {
 
 <CodeBlock :code="code" :previous-code="stepCodes['then']" title="my-promise.js" />
 
-<ResultBlock :code="runCode" />
+## 运行示例
+
+<ResultBlock
+  v-for="(ex, i) in examples"
+  :key="i"
+  :code="code + ex.code"
+  :example-code="ex.code.trim()"
+  :title="ex.title"
+/>

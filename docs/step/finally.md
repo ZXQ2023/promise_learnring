@@ -7,10 +7,29 @@ import { stepCodes } from '../shared/step-codes'
 
 const code = stepCodes['finally']
 
-const runCode = code + `
-
+const examples = [
+  {
+    title: '示例一：resolve 时执行 finally',
+    code: `
 const p = new MyPromise((resolve) => resolve('Done!'));
-p.finally(() => console.log('Cleanup!')).then((v) => console.log('Value:', v));`
+p.finally(() => console.log('Cleanup!'))
+ .then((v) => console.log('Value:', v));`
+  },
+  {
+    title: '示例二：reject 时也执行 finally',
+    code: `
+const p = new MyPromise((_, reject) => reject('Error!'));
+p.finally(() => console.log('Cleanup!'))
+ .catch((e) => console.log('Caught:', e));`
+  },
+  {
+    title: '示例三：finally 不改变传递的值',
+    code: `
+new MyPromise((resolve) => resolve(42))
+  .finally(() => console.log('side effect'))
+  .then((v) => console.log('value unchanged:', v));`
+  }
+]
 </script>
 
 # finally 实现
@@ -42,4 +61,12 @@ finally 无论 Promise 成功还是失败都会执行，且不改变最终的值
 
 <CodeBlock :code="code" :previous-code="stepCodes['catch']" title="my-promise.js" />
 
-<ResultBlock :code="runCode" />
+## 运行示例
+
+<ResultBlock
+  v-for="(ex, i) in examples"
+  :key="i"
+  :code="code + ex.code"
+  :example-code="ex.code.trim()"
+  :title="ex.title"
+/>

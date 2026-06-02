@@ -7,18 +7,34 @@ import { stepCodes } from '../shared/step-codes'
 
 const code = stepCodes['set-state']
 
-const runCode = code + `
-
+const examples = [
+  {
+    title: '示例一：resolve 后无法再 reject',
+    code: `
 const p = new MyPromise((resolve, reject) => {
-  resolve('Success!');
-});
-console.log('Promise created successfully');
-
-const p2 = new MyPromise((resolve, reject) => {
   resolve('First');
-  reject('Second'); // 不会执行，因为状态已经变更
+  reject('Second'); // 不会执行
 });
-console.log('State changed only once');`
+console.log('Promise created');`
+  },
+  {
+    title: '示例二：reject 后无法再 resolve',
+    code: `
+const p = new MyPromise((resolve, reject) => {
+  reject('Error first');
+  resolve('Success second'); // 不会执行
+});
+console.log('Promise created');`
+  },
+  {
+    title: '示例三：抛出异常也走 #setState',
+    code: `
+const p = new MyPromise((resolve, reject) => {
+  throw new Error('Crash!');
+});
+console.log('Error handled by #setState');`
+  }
+]
 </script>
 
 # 状态变更封装
@@ -42,4 +58,12 @@ resolve 和 reject 不再直接操作 #state 和 #value，而是通过 #setState
 
 <CodeBlock :code="code" :previous-code="stepCodes['private-fields']" title="my-promise.js" />
 
-<ResultBlock :code="runCode" />
+## 运行示例
+
+<ResultBlock
+  v-for="(ex, i) in examples"
+  :key="i"
+  :code="code + ex.code"
+  :example-code="ex.code.trim()"
+  :title="ex.title"
+/>

@@ -6,6 +6,37 @@ title: 异常抛出处理
 import { stepCodes } from '../shared/step-codes'
 
 const code = stepCodes['try-catch']
+
+const examples = [
+  {
+    title: '示例一：同步异常被捕获并自动 reject',
+    code: `
+const p = new MyPromise((resolve, reject) => {
+  throw new Error('Something went wrong');
+});
+console.log('state:', p.state);
+console.log('value:', p.value);`
+  },
+  {
+    title: '示例二：正常 resolve 不受影响',
+    code: `
+const p = new MyPromise((resolve, reject) => {
+  resolve('All good!');
+});
+console.log('state:', p.state);
+console.log('value:', p.value);`
+  },
+  {
+    title: '示例三：异步异常无法被捕获',
+    code: `
+const p = new MyPromise((resolve, reject) => {
+  setTimeout(() => {
+    throw new Error('Async error'); // 无法捕获
+  }, 10);
+});
+console.log('state:', p.state);`
+  }
+]
 </script>
 
 # 异常抛出处理
@@ -25,4 +56,12 @@ const code = stepCodes['try-catch']
 异步错误（如 setTimeout 中的 throw）无法被捕获，属于正常行为。
 :::
 
-<ResultBlock :code="code" />
+## 运行示例
+
+<ResultBlock
+  v-for="(ex, i) in examples"
+  :key="i"
+  :code="code + ex.code"
+  :example-code="ex.code.trim()"
+  :title="ex.title"
+/>

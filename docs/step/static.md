@@ -7,17 +7,42 @@ import { stepCodes } from '../shared/step-codes'
 
 const code = stepCodes['static']
 
-const runCode = code + `
-
-// Test static methods
+const examples = [
+  {
+    title: '示例一：MyPromise.resolve / reject',
+    code: `
 MyPromise.resolve(42).then(v => console.log('resolve:', v));
-MyPromise.reject('error').catch(e => console.log('reject:', e));
-
+MyPromise.reject('error').catch(e => console.log('reject:', e));`
+  },
+  {
+    title: '示例二：MyPromise.all 全部成功',
+    code: `
 MyPromise.all([
   MyPromise.resolve(1),
   MyPromise.resolve(2),
   MyPromise.resolve(3),
 ]).then((results) => console.log('all:', results));`
+  },
+  {
+    title: '示例三：MyPromise.all 有一个失败',
+    code: `
+MyPromise.all([
+  MyPromise.resolve(1),
+  MyPromise.reject('fail'),
+  MyPromise.resolve(3),
+]).then(
+  (results) => console.log('all success:', results),
+  (e) => console.log('all failed:', e)
+);`
+  },
+  {
+    title: '示例四：MyPromise.try',
+    code: `
+MyPromise.try(() => {
+  return 1 + 1;
+}).then((v) => console.log('try result:', v));`
+  }
+]
 </script>
 
 # 静态方法
@@ -87,4 +112,12 @@ ES6 扩展的静态方法：resolve、reject、try、all。这些不属于 Promi
 
 <CodeBlock :code="code" :previous-code="stepCodes['finally']" title="my-promise.js — 完整实现" />
 
-<ResultBlock :code="runCode" />
+## 运行示例
+
+<ResultBlock
+  v-for="(ex, i) in examples"
+  :key="i"
+  :code="code + ex.code"
+  :example-code="ex.code.trim()"
+  :title="ex.title"
+/>

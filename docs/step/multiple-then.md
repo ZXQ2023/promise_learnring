@@ -7,14 +7,42 @@ import { stepCodes } from '../shared/step-codes'
 
 const code = stepCodes['multiple-then']
 
-const runCode = code + `
-
+const examples = [
+  {
+    title: '示例一：异步 resolve 多次 then',
+    code: `
 const p = new MyPromise((resolve) => {
   setTimeout(() => resolve('Hi!'), 100);
 });
 p.then((v) => console.log('then 1:', v));
 p.then((v) => console.log('then 2:', v));
 p.then((v) => console.log('then 3:', v));`
+  },
+  {
+    title: '示例二：同步 resolve 多次 then',
+    code: `
+const p = new MyPromise((resolve) => {
+  resolve('Sync!');
+});
+p.then((v) => console.log('then 1:', v));
+p.then((v) => console.log('then 2:', v));`
+  },
+  {
+    title: '示例三：异步 reject 多次 then',
+    code: `
+const p = new MyPromise((_, reject) => {
+  setTimeout(() => reject('Boom!'), 100);
+});
+p.then(
+  (v) => console.log('Fulfilled:', v),
+  (r) => console.log('Rejected:', r)
+);
+p.then(
+  (v) => console.log('Fulfilled2:', v),
+  (r) => console.log('Rejected2:', r)
+);`
+  }
+]
 </script>
 
 # 多次 then 调用
@@ -38,4 +66,12 @@ p.then((v) => console.log('then 3:', v));`
 
 <CodeBlock :code="code" :previous-code="stepCodes['async-resolve']" title="my-promise.js" />
 
-<ResultBlock :code="runCode" />
+## 运行示例
+
+<ResultBlock
+  v-for="(ex, i) in examples"
+  :key="i"
+  :code="code + ex.code"
+  :example-code="ex.code.trim()"
+  :title="ex.title"
+/>

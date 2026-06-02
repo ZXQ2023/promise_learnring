@@ -7,14 +7,41 @@ import { stepCodes } from '../shared/step-codes'
 
 const code = stepCodes['then']
 
-const runCode = code + `
-
+const examples = [
+  {
+    title: '示例一：同步 resolve + then',
+    code: `
 const p = new MyPromise((resolve, reject) => {
   resolve('Hello Promise!');
 });
 p.then((value) => {
   console.log('Fulfilled:', value);
 });`
+  },
+  {
+    title: '示例二：同步 reject + then',
+    code: `
+const p = new MyPromise((resolve, reject) => {
+  reject('Something wrong');
+});
+p.then(
+  (value) => console.log('Fulfilled:', value),
+  (reason) => console.log('Rejected:', reason)
+);`
+  },
+  {
+    title: '示例三：then 返回新 Promise',
+    code: `
+const p = new MyPromise((resolve) => {
+  resolve('Hello');
+});
+const p2 = p.then((value) => {
+  console.log('Got:', value);
+  return value + ' World';
+});
+console.log('p2 is MyPromise:', p2 instanceof MyPromise);`
+  }
+]
 </script>
 
 # Then 方法
@@ -42,4 +69,12 @@ then 方法接收 onFulfilled 和 onRejected 两个回调。如果状态已确�
 
 <CodeBlock :code="code" :previous-code="stepCodes['set-state']" title="my-promise.js" />
 
-<ResultBlock :code="runCode" />
+## 运行示例
+
+<ResultBlock
+  v-for="(ex, i) in examples"
+  :key="i"
+  :code="code + ex.code"
+  :example-code="ex.code.trim()"
+  :title="ex.title"
+/>

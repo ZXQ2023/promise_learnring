@@ -7,12 +7,34 @@ import { stepCodes } from '../shared/step-codes'
 
 const code = stepCodes['state']
 
-const runCode = code + `
-
+const examples = [
+  {
+    title: '示例一：resolve 后状态变为 fulfilled',
+    code: `
 const p = new MyPromise((resolve, reject) => {
-  throw new Error('Something went wrong');
+  resolve('Success!');
 });
-console.log('p.state =', p.state);`
+console.log('state:', p.state);`
+  },
+  {
+    title: '示例二：reject 后状态变为 rejected',
+    code: `
+const p = new MyPromise((resolve, reject) => {
+  reject('Error!');
+});
+console.log('state:', p.state);`
+  },
+  {
+    title: '示例三：状态只能变更一次',
+    code: `
+const p = new MyPromise((resolve, reject) => {
+  resolve('First');
+  reject('Second'); // 不会生效
+});
+console.log('state:', p.state);
+console.log('value:', p.value);`
+  }
+]
 </script>
 
 # 状态封装
@@ -32,4 +54,12 @@ Promise 有三种状态：pending、fulfilled、rejected。状态一旦变更就
 异步错误无法被 try/catch 捕获。例如 setTimeout 中抛出的错误不会被捕获，这是正常行为。
 :::
 
-<ResultBlock :code="runCode" />
+## 运行示例
+
+<ResultBlock
+  v-for="(ex, i) in examples"
+  :key="i"
+  :code="code + ex.code"
+  :example-code="ex.code.trim()"
+  :title="ex.title"
+/>
