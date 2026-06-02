@@ -1,11 +1,11 @@
 ---
-title: 12. then 嵌套 Promise
+title: then 嵌套 Promise
 ---
 
 <script setup>
 import { stepCodes } from '../shared/step-codes'
 
-const code = stepCodes['12']
+const code = stepCodes['resolve-promise']
 
 const runCode = code + `
 
@@ -16,7 +16,7 @@ const p2 = p.then((v) => {
 p2.then((v) => console.log('result:', v));`
 </script>
 
-# 12. then 嵌套 Promise
+# then 嵌套 Promise
 
 当 then 回调返回的是一个 Promise（thenable）时，需要等待它完成再 resolve，而不是直接 resolve 这个 Promise 对象。
 
@@ -33,6 +33,6 @@ p2.then((v) => console.log('result:', v));`
 
 ## 完整代码
 
-<CodeBlock :code="code" :previous-code="stepCodes['11']" title="my-promise.js" />
+<CodeBlock :code="code" :previous-code="stepCodes['microtask']" title="my-promise.js" />
 
 <ResultBlock :code="runCode" />

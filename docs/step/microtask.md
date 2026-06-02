@@ -1,11 +1,11 @@
 ---
-title: 11. then 异步执行
+title: then 异步执行
 ---
 
 <script setup>
 import { stepCodes } from '../shared/step-codes'
 
-const code = stepCodes['11']
+const code = stepCodes['microtask']
 
 const runCode = code + `
 
@@ -15,7 +15,7 @@ p.then((v) => console.log(v));
 console.log('2. sync');`
 </script>
 
-# 11. then 异步执行
+# then 异步执行
 
 then 的回调应该异步执行（微任务），使用 `queueMicrotask` 确保 then 回调在当前同步代码之后执行。
 
@@ -36,6 +36,6 @@ then 的回调应该异步执行（微任务），使用 `queueMicrotask` 确保
 
 ## 完整代码
 
-<CodeBlock :code="code" :previous-code="stepCodes['10']" title="my-promise.js" />
+<CodeBlock :code="code" :previous-code="stepCodes['chain-then']" title="my-promise.js" />
 
 <ResultBlock :code="runCode" />

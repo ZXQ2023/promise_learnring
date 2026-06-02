@@ -1,11 +1,11 @@
 ---
-title: 9. 多次 then 调用
+title: 多次 then 调用
 ---
 
 <script setup>
 import { stepCodes } from '../shared/step-codes'
 
-const code = stepCodes['09']
+const code = stepCodes['multiple-then']
 
 const runCode = code + `
 
@@ -17,7 +17,7 @@ p.then((v) => console.log('then 2:', v));
 p.then((v) => console.log('then 3:', v));`
 </script>
 
-# 9. 多次 then 调用
+# 多次 then 调用
 
 同一个 Promise 可以调用多次 then，每次的回调都应该被执行。将 #handlers 改为数组，新增 #runHandlers 方法来批量执行。
 
@@ -36,6 +36,6 @@ p.then((v) => console.log('then 3:', v));`
 
 ## 完整代码
 
-<CodeBlock :code="code" :previous-code="stepCodes['08']" title="my-promise.js" />
+<CodeBlock :code="code" :previous-code="stepCodes['async-resolve']" title="my-promise.js" />
 
 <ResultBlock :code="runCode" />

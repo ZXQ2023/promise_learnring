@@ -1,11 +1,11 @@
 ---
-title: 14. finally 实现
+title: finally 实现
 ---
 
 <script setup>
 import { stepCodes } from '../shared/step-codes'
 
-const code = stepCodes['14']
+const code = stepCodes['finally']
 
 const runCode = code + `
 
@@ -13,7 +13,7 @@ const p = new MyPromise((resolve) => resolve('Done!'));
 p.finally(() => console.log('Cleanup!')).then((v) => console.log('Value:', v));`
 </script>
 
-# 14. finally 实现
+# finally 实现
 
 finally 无论 Promise 成功还是失败都会执行，且不改变最终的值。也是 ES6 扩展，不属于 A+ 规范。
 
@@ -40,6 +40,6 @@ finally 无论 Promise 成功还是失败都会执行，且不改变最终的值
 
 ## 完整代码
 
-<CodeBlock :code="code" :previous-code="stepCodes['13']" title="my-promise.js" />
+<CodeBlock :code="code" :previous-code="stepCodes['catch']" title="my-promise.js" />
 
 <ResultBlock :code="runCode" />

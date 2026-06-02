@@ -8,5 +8,5 @@ hero:
   actions:
     - theme: brand
       text: 开始学习
-      link: /step/01
+      link: /step/resolve-reject
 ---

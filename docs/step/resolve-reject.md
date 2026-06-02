@@ -1,11 +1,11 @@
 ---
-title: 1. 构建 resolve、reject
+title: 构建 resolve、reject
 ---
 
 <script setup>
 import { stepCodes } from '../shared/step-codes'
 
-const code = stepCodes['01']
+const code = stepCodes['resolve-reject']
 
 const runCode = code + `
 
@@ -17,7 +17,7 @@ const p2 = new MyPromise((resolve, reject) => {
 });`
 </script>
 
-# 1. 构建 resolve、reject
+# 构建 resolve、reject
 
 Promise 的核心是一个接收 executor 函数的构造函数，executor 立即执行并传入 resolve 和 reject 两个回调。
 

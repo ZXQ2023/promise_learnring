@@ -1,11 +1,11 @@
 ---
-title: 4. 将属性改为私有
+title: 将属性改为私有
 ---
 
 <script setup>
 import { stepCodes } from '../shared/step-codes'
 
-const code = stepCodes['04']
+const code = stepCodes['private-fields']
 
 const runCode = code + `
 
@@ -15,7 +15,7 @@ const p = new MyPromise((resolve, reject) => {
 console.log('Promise created successfully');`
 </script>
 
-# 4. 将属性改为私有
+# 将属性改为私有
 
 使用 ES2022 私有字段语法 `#` 将 state 和 value 设为私有，外部无法直接访问。
 
@@ -24,7 +24,7 @@ console.log('Promise created successfully');`
 私有字段只能在类内部访问，确保状态不被外部篡改。
 :::
 
-<CodeBlock :code="code" :previous-code="stepCodes['03']" title="my-promise.js" />
+<CodeBlock :code="code" :previous-code="stepCodes['try-catch']" title="my-promise.js" />
 
 ::: warning 注意
 私有字段 `#field` 是 ES2022 特性，可能存在兼容性问题。

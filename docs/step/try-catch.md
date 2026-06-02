@@ -1,14 +1,14 @@
 ---
-title: 3. 异常抛出处理
+title: 异常抛出处理
 ---
 
 <script setup>
 import { stepCodes } from '../shared/step-codes'
 
-const code = stepCodes['03']
+const code = stepCodes['try-catch']
 </script>
 
-# 3. 异常抛出处理
+# 异常抛出处理
 
 用 try/catch 包裹 executor 的执行，同步异常会被捕获并自动调用 reject。
 
@@ -19,7 +19,7 @@ const code = stepCodes['03']
 
 ## 完整代码
 
-<CodeBlock :code="code" :previous-code="stepCodes['02']" title="my-promise.js" />
+<CodeBlock :code="code" :previous-code="stepCodes['state']" title="my-promise.js" />
 
 ::: warning 注意
 异步错误（如 setTimeout 中的 throw）无法被捕获，属于正常行为。

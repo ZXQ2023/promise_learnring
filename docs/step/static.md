@@ -1,11 +1,11 @@
 ---
-title: 15. 静态方法
+title: 静态方法
 ---
 
 <script setup>
 import { stepCodes } from '../shared/step-codes'
 
-const code = stepCodes['15']
+const code = stepCodes['static']
 
 const runCode = code + `
 
@@ -20,7 +20,7 @@ MyPromise.all([
 ]).then((results) => console.log('all:', results));`
 </script>
 
-# 15. 静态方法
+# 静态方法
 
 ES6 扩展的静态方法：resolve、reject、try、all。这些不属于 Promise A+ 规范，但实际使用非常频繁。
 
@@ -85,6 +85,6 @@ ES6 扩展的静态方法：resolve、reject、try、all。这些不属于 Promi
 
 ## 完整代码
 
-<CodeBlock :code="code" :previous-code="stepCodes['14']" title="my-promise.js — 完整实现" />
+<CodeBlock :code="code" :previous-code="stepCodes['finally']" title="my-promise.js — 完整实现" />
 
 <ResultBlock :code="runCode" />

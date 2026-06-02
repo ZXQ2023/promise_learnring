@@ -19,8 +19,9 @@ export default defineConfig({
       text: section.label,
       items: section.ids.map(id => {
         const chapter = chapters.find(c => c.id === id)!
+        const index = chapters.indexOf(chapter) + 1
         return {
-          text: `${id}. ${chapter.title}`,
+          text: `${index}. ${chapter.title}`,
           link: `/step/${id}`,
         }
       }),

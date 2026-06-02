@@ -1,11 +1,11 @@
 ---
-title: 7. 异步 resolve/reject
+title: 异步 resolve/reject
 ---
 
 <script setup>
 import { stepCodes } from '../shared/step-codes'
 
-const code = stepCodes['07']
+const code = stepCodes['async-resolve']
 
 const runCode = code + `
 
@@ -19,7 +19,7 @@ p.then((value) => {
 });`
 </script>
 
-# 7. 异步 resolve/reject
+# 异步 resolve/reject
 
 当 resolve/reject 是异步调用时，then 执行时状态还是 pending，需要用 #handlers 存储回调，等状态变更后再执行。
 
@@ -39,6 +39,6 @@ p.then((value) => {
 
 ## 完整代码
 
-<CodeBlock :code="code" :previous-code="stepCodes['06']" title="my-promise.js" />
+<CodeBlock :code="code" :previous-code="stepCodes['then']" title="my-promise.js" />
 
 <ResultBlock :code="runCode" />

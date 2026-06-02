@@ -1,11 +1,11 @@
 ---
-title: 2. 状态封装
+title: 状态封装
 ---
 
 <script setup>
 import { stepCodes } from '../shared/step-codes'
 
-const code = stepCodes['02']
+const code = stepCodes['state']
 
 const runCode = code + `
 
@@ -15,7 +15,7 @@ const p = new MyPromise((resolve, reject) => {
 console.log('p.state =', p.state);`
 </script>
 
-# 2. 状态封装
+# 状态封装
 
 Promise 有三种状态：pending、fulfilled、rejected。状态一旦变更就不可逆转，且增加异常捕获。
 
@@ -26,7 +26,7 @@ Promise 有三种状态：pending、fulfilled、rejected。状态一旦变更就
 
 ## 完整代码
 
-<CodeBlock :code="code" :previous-code="stepCodes['01']" title="my-promise.js" />
+<CodeBlock :code="code" :previous-code="stepCodes['resolve-reject']" title="my-promise.js" />
 
 ::: warning 注意
 异步错误无法被 try/catch 捕获。例如 setTimeout 中抛出的错误不会被捕获，这是正常行为。

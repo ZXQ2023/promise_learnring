@@ -1,11 +1,11 @@
 ---
-title: 5. 状态变更封装
+title: 状态变更封装
 ---
 
 <script setup>
 import { stepCodes } from '../shared/step-codes'
 
-const code = stepCodes['05']
+const code = stepCodes['set-state']
 
 const runCode = code + `
 
@@ -21,7 +21,7 @@ const p2 = new MyPromise((resolve, reject) => {
 console.log('State changed only once');`
 </script>
 
-# 5. 状态变更封装
+# 状态变更封装
 
 将状态变更逻辑封装为私有方法 `#setState`，resolve 和 reject 统一调用它。
 
@@ -40,6 +40,6 @@ resolve 和 reject 不再直接操作 #state 和 #value，而是通过 #setState
 
 ## 完整代码
 
-<CodeBlock :code="code" :previous-code="stepCodes['04']" title="my-promise.js" />
+<CodeBlock :code="code" :previous-code="stepCodes['private-fields']" title="my-promise.js" />
 
 <ResultBlock :code="runCode" />

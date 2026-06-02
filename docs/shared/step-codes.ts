@@ -1,5 +1,6 @@
 export const stepCodes: Record<string, string> = {
-  '01': `class MyPromise{
+  'resolve-reject': `
+class MyPromise{
   value
   constructor(executor) {
     const resolve = (value) => {
@@ -14,7 +15,7 @@ export const stepCodes: Record<string, string> = {
   }
 }`,
 
-  '02': `const PENDING = 'pending';
+  'state': `const PENDING = 'pending';
 const FULFILLED = 'fulfilled';
 const REJECTED = 'rejected';
 
@@ -36,7 +37,7 @@ class MyPromise{
   }
 }`,
 
-  '03': `const PENDING = 'pending';
+  'try-catch': `const PENDING = 'pending';
 const FULFILLED = 'fulfilled';
 const REJECTED = 'rejected';
 
@@ -63,7 +64,7 @@ class MyPromise{
   }
 }`,
 
-  '04': `const PENDING = 'pending';
+  'private-fields': `const PENDING = 'pending';
 const FULFILLED = 'fulfilled';
 const REJECTED = 'rejected';
 
@@ -90,7 +91,7 @@ class MyPromise{
   }
 }`,
 
-  '05': `const PENDING = 'pending';
+  'set-state': `const PENDING = 'pending';
 const FULFILLED = 'fulfilled';
 const REJECTED = 'rejected';
 
@@ -119,7 +120,7 @@ class MyPromise{
   }
 }`,
 
-  '06': `const PENDING = 'pending';
+  'then': `const PENDING = 'pending';
 const FULFILLED = 'fulfilled';
 const REJECTED = 'rejected';
 
@@ -159,7 +160,7 @@ class MyPromise{
   }
 }`,
 
-  '07': `const PENDING = 'pending';
+  'async-resolve': `const PENDING = 'pending';
 const FULFILLED = 'fulfilled';
 const REJECTED = 'rejected';
 
@@ -205,53 +206,7 @@ class MyPromise{
   }
 }`,
 
-  '08': `const PENDING = 'pending';
-const FULFILLED = 'fulfilled';
-const REJECTED = 'rejected';
-
-class MyPromise{
-  #state = PENDING;
-  #value
-  #handlers = []
-  constructor(executor) {
-    const resolve = (value) => {
-      this.#setState(FULFILLED, value);
-    }
-    const reject = (reason) => {
-      this.#setState(REJECTED, reason);
-    }
-    try{
-      executor(resolve, reject);
-    }
-    catch(err){
-      reject(err);
-    }
-  }
-
-  #setState(state, value){
-    if(this.#state !== PENDING) return;
-    this.#state = state;
-    this.#value = value;
-    this.#handlers && this.#handlers();
-  }
-
-  then(onFulfilled, onRejected){
-    return new MyPromise((resolve, reject) => {
-      this.#handlers = () => {
-        if(this.#state === FULFILLED){
-          onFulfilled(this.#value);
-        }else {
-          onRejected(this.#value);
-        }
-      }
-      if(this.#state !== PENDING){
-        this.#handlers();
-      }
-    })
-  }
-}`,
-
-  '09': `const PENDING = 'pending';
+  'multiple-then': `const PENDING = 'pending';
 const FULFILLED = 'fulfilled';
 const REJECTED = 'rejected';
 
@@ -301,7 +256,7 @@ class MyPromise{
   }
 }`,
 
-  '10': `const PENDING = 'pending';
+  'chain-then': `const PENDING = 'pending';
 const FULFILLED = 'fulfilled';
 const REJECTED = 'rejected';
 
@@ -353,7 +308,7 @@ class MyPromise{
   }
 }`,
 
-  '11': `const PENDING = 'pending';
+  'microtask': `const PENDING = 'pending';
 const FULFILLED = 'fulfilled';
 const REJECTED = 'rejected';
 
@@ -407,7 +362,7 @@ class MyPromise{
   }
 }`,
 
-  '12': `const PENDING = 'pending';
+  'resolve-promise': `const PENDING = 'pending';
 const FULFILLED = 'fulfilled';
 const REJECTED = 'rejected';
 
@@ -469,7 +424,7 @@ class MyPromise{
   }
 }`,
 
-  '13': `const PENDING = 'pending';
+  'catch': `const PENDING = 'pending';
 const FULFILLED = 'fulfilled';
 const REJECTED = 'rejected';
 
@@ -535,7 +490,7 @@ class MyPromise{
   }
 }`,
 
-  '14': `const PENDING = 'pending';
+  'finally': `const PENDING = 'pending';
 const FULFILLED = 'fulfilled';
 const REJECTED = 'rejected';
 
@@ -614,7 +569,7 @@ class MyPromise{
   }
 }`,
 
-  '15': `const PENDING = 'pending';
+  'static': `const PENDING = 'pending';
 const FULFILLED = 'fulfilled';
 const REJECTED = 'rejected';
 
