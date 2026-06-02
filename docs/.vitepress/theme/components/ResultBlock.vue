@@ -78,7 +78,7 @@ function run() {
   transition: background-color 0.2s;
 }
 .run-button:hover {
-  background: rgba(99, 102, 241, 0.25);
+  opacity: 0.85;
 }
 .run-button:disabled {
   opacity: 0.5;
@@ -91,7 +91,7 @@ function run() {
 .result-output {
   margin-top: 0.75rem;
   border-radius: 0.75rem;
-  background: #1a1a2e;
+  background: var(--vp-c-bg-soft);
   border: 1px solid var(--vp-c-divider);
   overflow: hidden;
 }

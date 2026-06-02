@@ -5,7 +5,6 @@ export default defineConfig({
   title: '手写 Promise 学习之旅',
   description: '循序渐进实现 Promise',
   lang: 'zh-CN',
-  appearance: 'dark',
   base: '/promise_learnring/',
 
   themeConfig: {
