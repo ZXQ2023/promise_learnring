@@ -12,19 +12,30 @@ export default defineConfig({
 
     nav: [
       { text: '首页', link: '/' },
+      { text: '使用场景', link: '/usage' },
+      { text: '面试题', link: '/interview' },
     ],
 
-    sidebar: sections.map(section => ({
-      text: section.label,
-      items: section.ids.map(id => {
-        const chapter = chapters.find(c => c.id === id)!
-        const index = chapters.indexOf(chapter) + 1
-        return {
-          text: `${index}. ${chapter.title}`,
-          link: `/step/${id}`,
-        }
-      }),
-    })),
+    sidebar: [
+      ...sections.map(section => ({
+        text: section.label,
+        items: section.ids.map(id => {
+          const chapter = chapters.find(c => c.id === id)!
+          const index = chapters.indexOf(chapter) + 1
+          return {
+            text: `${index}. ${chapter.title}`,
+            link: `/step/${id}`,
+          }
+        }),
+      })),
+      {
+        text: '扩展',
+        items: [
+          { text: '常见使用场景', link: '/usage' },
+          { text: '面试题', link: '/interview' },
+        ],
+      },
+    ],
 
     footer: {
       message: '循序渐进实现 Promise',
