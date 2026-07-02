@@ -39,20 +39,15 @@ console.log('value:', p.value);`
 
 # 状态封装
 
-Promise 有三种状态：pending、fulfilled、rejected。状态一旦变更就不可逆转，且增加异常捕获。
+Promise 有三种状态：pending、fulfilled、rejected。状态一旦变更就不可逆转。
 
 ::: tip 本节要点
 新增状态常量 PENDING / FULFILLED / REJECTED。resolve 和 reject 中加入状态守卫，确保只能变更一次。
-同时用 try/catch 包裹 executor，捕获同步异常。
 :::
 
 ## 完整代码
 
 <CodeBlock :code="code" :previous-code="stepCodes['resolve-reject']" title="my-promise.js" />
-
-::: warning 注意
-异步错误无法被 try/catch 捕获。例如 setTimeout 中抛出的错误不会被捕获，这是正常行为。
-:::
 
 ## 运行示例
 
