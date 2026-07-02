@@ -41,6 +41,10 @@ export default defineConfig({
       },
     ],
 
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/ZXQ2023/promise_learnring' },
+    ],
+
     footer: {
       message: '循序渐进实现 Promise',
     },
