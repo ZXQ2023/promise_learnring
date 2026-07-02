@@ -127,7 +127,6 @@ const REJECTED = 'rejected';
 class MyPromise{
   #state = PENDING;
   #value
-  #handlers = []
   constructor(executor) {
     const resolve = (value) => {
       this.#setState(FULFILLED, value);
