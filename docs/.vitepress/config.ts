@@ -14,6 +14,10 @@ export default defineConfig({
       { text: '首页', link: '/' },
       { text: '使用场景', link: '/usage' },
       { text: '面试题', link: '/interview' },
+      {
+        text: 'MDN 文档',
+        link: 'https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise',
+      },
     ],
 
     sidebar: [
