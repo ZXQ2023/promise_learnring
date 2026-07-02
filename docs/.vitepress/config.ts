@@ -13,6 +13,7 @@ export default defineConfig({
     nav: [
       { text: '首页', link: '/' },
       { text: '使用场景', link: '/usage' },
+      { text: '源码解读', link: '/source/' },
       { text: '面试题', link: '/interview' },
       {
         text: 'MDN 文档',
@@ -37,6 +38,13 @@ export default defineConfig({
         items: [
           { text: '常见使用场景', link: '/usage' },
           { text: '面试题', link: '/interview' },
+        ],
+      },
+      {
+        text: 'Promise 库源码解读',
+        items: [
+          { text: '模块介绍', link: '/source/' },
+          { text: 'axios 源码解读', link: '/source/axios' },
         ],
       },
     ],
